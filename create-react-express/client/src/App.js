@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import NavBar from "./Components/NavBar";
+import Jumbotron from "./Components/Jumbotron";
+import SearchBar from "./Components/SearchBar"
+import Table from "./Components/Table"
 
 function App() {
   return (
-    <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to React</h2>
-      </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
+    <div>
+      <NavBar />
+      <Jumbotron />
+      <SearchBar/>
+      <Table/>
     </div>
   );
 }
-
 
 export default App;
