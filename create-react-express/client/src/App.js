@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
+import NavBar from "./Components/NavBar";
+import Jumbotron from "./Components/Jumbotron";
+import SearchBar from "./Components/SearchBar"
+import Table from "./Components/Table"
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Switch>
-          {/* <Route exact path="/books" component={books} />
-          <Route exact path="/search" component={search} /> */}
-          <Route exact path="*" />
-        </Switch>
-      </div>
-    </Router>
+    <div>
+      <NavBar />
+      <Jumbotron />
+      <SearchBar/>
+      <Table/>
+    </div>
   );
 }
-
 
 export default App;
