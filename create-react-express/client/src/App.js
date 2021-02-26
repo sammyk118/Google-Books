@@ -4,6 +4,7 @@ import "./App.css";
 import NavBar from "./Components/NavBar";
 import Jumbotron from "./Components/Jumbotron";
 import SearchBar from "./Components/SearchBar"
+import Table from "./Components/Table"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <NavBar />
       <Jumbotron />
       <SearchBar/>
+      <Table/>
     </div>
   );
 }
