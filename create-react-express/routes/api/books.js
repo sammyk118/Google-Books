@@ -32,11 +32,7 @@ router.get("/google", function (req, res) {
           link: bookObj.volumeInfo.infoLink
         }
         return parsedBook;
-        // maybe we can do conditional "if" check to see if thumbnail is present, and if not then we return an object without an image key. Clunky solution but might work.
-        // something along the lines of bookObj.volumeInfo.imageLinks === undefined
-        // ? ""
-        // : `${bookObj.volumeInfo.imageLinks.thumbnail}`
-      })
+      });
       res.json(specificData);
     })
     .catch(err => console.log(err));
