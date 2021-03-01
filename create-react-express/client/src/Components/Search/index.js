@@ -23,6 +23,17 @@ function Search() {
       .catch((err) => console.log(err));
   }
 
+  function saveBook(book) {
+   console.log("Inside of save function")
+    API.saveBook({
+      title: book.title,
+      author: book.author,
+      description: book.description,
+      image: book.image.thumbnail,
+      link: book.link,
+    });
+  }
+
   return (
     <div>
       <NavBar />
@@ -32,8 +43,11 @@ function Search() {
         onClick={handleFormSubmit}
         value={search}
       />
-      {books.map((book) => {
-          return <Table book={book} />;
+      {books.map((book, index) => {
+        return <Table 
+        book={book} 
+        onClick={saveBook} 
+        key={index} />;
       })}
     </div>
   );
