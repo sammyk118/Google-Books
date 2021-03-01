@@ -19,10 +19,7 @@ function Search() {
         event.preventDefault();
         console.log("Search term:", search);
         API.googleBooks(search)
-            .then(res => 
-                console.log("GoogleBooks response:", res.data)
-            
-            )
+            .then(res => console.log("GoogleBooks response:", res.data))
             .catch(err => console.log(err));
     }
     // setBooks(res.data)  insert into stateful variable

@@ -22,17 +22,23 @@ router.get("/google", function (req, res) {
   axios.get(url + query + key)
     .then(({ data: { items } }) => {
       let specificData = items.map(bookObj => {
-        return { 
+        
+        let parsedBook = {
           title: bookObj.volumeInfo.title,
           authors: bookObj.volumeInfo.authors,
           description: bookObj.volumeInfo.description,
           image: bookObj.volumeInfo.imageLinks.thumbnail,
           link: bookObj.volumeInfo.infoLink
         }
+        return parsedBook;
+        // maybe we can do conditional "if" check to see if thumbnail is present, and if not then we return an object without an image key. Clunky solution but might work.
+        // something along the lines of bookObj.volumeInfo.imageLinks === undefined
+        // ? ""
+        // : `${bookObj.volumeInfo.imageLinks.thumbnail}`
       })
       res.json(specificData);
     })
-    .catch(err => res.status(422).json(err));
+    .catch(err => console.log(err));
 });
 
 

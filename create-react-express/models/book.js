@@ -5,7 +5,9 @@ const bookSchema = new Schema({
     title: { type: String },
     authors: [],
     description: { type: String },
-    image: { type: String },
+    image: { 
+        type: String,
+        required: false},
     link: { type: String }
 })
 
