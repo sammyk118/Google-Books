@@ -17,7 +17,8 @@ export default {
     },
 
     // Attempting query to Google Books
-    googleBooks: function (title) {
-        return axios.get("/api/books/google", { params: title });
+    googleBooks: function (query) {
+        console.log("Frontend API title:", query);
+        return axios.get("/api/books/google", { params: { q: query } });
     }
 }

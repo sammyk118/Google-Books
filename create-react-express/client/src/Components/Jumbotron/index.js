@@ -3,10 +3,10 @@ import "./style.css";
 
 function Jumbotron() {
   return (
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Google Books Search</h1>
-        <p class="lead">
+    <div className="jumbotron jumbotron-fluid">
+      <div className="container">
+        <h1 className="display-4">Google Books Search</h1>
+        <p className="lead">
          Search for and Save Books of interest
         </p>
       </div>
