@@ -6,32 +6,51 @@ import Table from "../Table";
 import API from "../../utils/API";
 
 function Search() {
-    const [books, setBooks] = useState([]);
-    const [search, setSearch] = useState("");
+  const [books, setBooks] = useState([]);
+  const [search, setSearch] = useState("");
 
-    function handleInputChange(event) {
-        const { value } = event.target;
-        console.log(value);
-        setSearch(value);
-    }
+  function handleInputChange(event) {
+    const { value } = event.target;
+    console.log(value);
+    setSearch(value);
+  }
 
-    function handleFormSubmit(event) {
-        event.preventDefault();
-        console.log("Search term:", search);
-        API.googleBooks(search)
-            .then(res => console.log("GoogleBooks response:", res.data))
-            .catch(err => console.log(err));
-    }
-    // setBooks(res.data)  insert into stateful variable
-    return (
-        <div>
-            <NavBar />
-            <Jumbotron />
-            <SearchBar onChange={handleInputChange} onClick={handleFormSubmit} 
-            value={search} />
-            <Table />
-        </div>
-    )
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    console.log("Search term:", search);
+    API.googleBooks(search)
+      .then((res) => setBooks(res.data))
+      .catch((err) => console.log(err));
+  }
+
+  function saveBook(book) {
+   console.log("Inside of save function")
+    API.saveBook({
+      title: book.title,
+      author: book.author,
+      description: book.description,
+      image: book.image.thumbnail,
+      link: book.link,
+    });
+  }
+
+  return (
+    <div>
+      <NavBar />
+      <Jumbotron />
+      <SearchBar
+        onChange={handleInputChange}
+        onClick={handleFormSubmit}
+        value={search}
+      />
+      {books.map((book, index) => {
+        return <Table 
+        book={book} 
+        onClick={saveBook} 
+        key={index} />;
+      })}
+    </div>
+  );
 }
 
 export default Search;
