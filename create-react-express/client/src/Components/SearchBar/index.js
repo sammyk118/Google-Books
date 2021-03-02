@@ -4,7 +4,7 @@ import "./style.css";
 
 function SearchBar(props) {
   return (
-    <div className="card mb-5">
+    <div className="card mb-5 d-block mx-auto" id="searchbar">
       <div className="input-group">
         <input
           type="search"

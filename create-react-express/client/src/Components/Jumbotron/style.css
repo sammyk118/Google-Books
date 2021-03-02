@@ -1,4 +1,9 @@
 .jumbotron{
-   
+background-image: url("https://www.detroitlabs.com/wp-content/uploads/2018/02/alfons-morales-YLSwjSy7stw-unsplash.jpg");
 text-align: center;
+color: lavenderblush;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+font-weight: 700;
+min-height: 370px;
 }
+
