@@ -21,15 +21,16 @@ function Search() {
     API.googleBooks(search)
       .then((res) => setBooks(res.data))
       .catch((err) => console.log(err));
+    console.log(books);
   }
 
   function saveBook(book) {
    console.log("Inside of save function")
     API.saveBook({
       title: book.title,
-      author: book.author,
+      authors: book.authors,
       description: book.description,
-      image: book.image.thumbnail,
+      image: book.image,
       link: book.link,
     });
   }
@@ -47,7 +48,9 @@ function Search() {
         return <Table 
         book={book} 
         onClick={saveBook} 
-        key={index} />;
+        key={index} 
+        status="search"
+        />
       })}
     </div>
   );
