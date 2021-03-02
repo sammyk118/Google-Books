@@ -25,7 +25,7 @@ function Search() {
   }
 
   function saveBook(book) {
-   console.log("Inside of save function")
+    console.log("Inside of save function")
     API.saveBook({
       title: book.title,
       authors: book.authors,
@@ -39,19 +39,21 @@ function Search() {
     <div>
       <NavBar />
       <Jumbotron />
-      <SearchBar
-        onChange={handleInputChange}
-        onClick={handleFormSubmit}
-        value={search}
-      />
-      {books.map((book, index) => {
-        return <Table 
-        book={book} 
-        onClick={saveBook} 
-        key={index} 
-        status="search"
+      <div className="container">
+        <SearchBar
+          onChange={handleInputChange}
+          onClick={handleFormSubmit}
+          value={search}
         />
-      })}
+        {books.map((book, index) => {
+          return <Table
+            book={book}
+            onClick={saveBook}
+            key={index}
+            status="search"
+          />
+        })}
+      </div>
     </div>
   );
 }

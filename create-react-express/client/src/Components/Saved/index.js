@@ -16,8 +16,12 @@ function Saved() {
             .catch((err) => console.log(err));
     }
 
-    function deleteBook(id) {
-
+    function deleteBook(book) {
+        const bookId = book._id;
+        // console.log(bookId);
+        API.deleteBook(bookId)
+            .then((res) => setSaved(res.data))
+            .catch((err) => console.log(err));
     }
 
     return (
@@ -26,16 +30,18 @@ function Saved() {
             <header className="text-center my-5">
                 <h1>Saved Books</h1>
             </header>
-            {saved.map((book, index) => {
-                return <Table
-                    book={book}
-                    onClick={deleteBook}
-                    key={index}
-                    id={book._id}
-                    status="saved"
-                />
-            })}
-
+            <div className="container">
+                <h5 className="card-header">Results</h5>
+                {saved.map((book, index) => {
+                    return <Table
+                        book={book}
+                        onClick={deleteBook}
+                        key={index}
+                        id={book._id}
+                        status="saved"
+                    />
+                })}
+            </div>
         </div>
     )
 }
