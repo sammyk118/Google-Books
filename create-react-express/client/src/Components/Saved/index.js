@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../NavBar";
 import Table from "../Table";
 import API from "../../utils/API";
+import "./style.css";
 
 function Saved() {
     const [saved, setSaved] = useState([]);
@@ -20,7 +21,7 @@ function Saved() {
         const bookId = book._id;
         // console.log(bookId);
         API.deleteBook(bookId)
-            .then((res) => setSaved(res.data))
+            .then(() => loadBooks())
             .catch((err) => console.log(err));
     }
 
@@ -31,7 +32,7 @@ function Saved() {
                 <h1>Saved Books</h1>
             </header>
             <div className="container">
-                <h5 className="card-header">Results</h5>
+                <h5 className="card-header trimcolor">Results</h5>
                 {saved.map((book, index) => {
                     return <Table
                         book={book}
