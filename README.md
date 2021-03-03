@@ -1,29 +1,73 @@
-# Create React Express App
+## Google Books App
+This full stack application uses react, express, mongoose, and axios to let the user search for books, view a book's basic information, save books to a database, and view saved books.
 
-## About This Boilerplate
+[Deployed Site](https://ancient-woodland-82489.herokuapp.com/)
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+# Search Page
+![search](./client/public/booksaved.png)
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+# Saved Page
+![saved](./client/public/booksearch.png)
 
-## Starting the app locally
+## Technologies Used
+- React
+- Express
+- MongoDB
+- Axios
+- Bootstrap
 
-Start by installing front and backend dependencies. While in this directory, run the following command:
+
+Axios makes a request for the Google books API
+```javascript
+router.get("/google", function (req, res) {
+  console.log("Backend req variable:", req.query.q);
+  
+  let url = "https://www.googleapis.com/books/v1/volumes?q=";
+  let query = req.query.q;
+  let key = "&key=AIzaSyByK7dx9Q35o7iCatSUJ3_6so-bMZrZq0k";
+  axios.get(url + query + key)
+    .then(({ data: { items } }) => {
+      let specificData = items.map(bookObj => {
+        const bookImg = (bookObj.volumeInfo.imageLinks === undefined ? "" : `${bookObj.volumeInfo.imageLinks.thumbnail}`);
+
+        let parsedBook = {
+          title: bookObj.volumeInfo.title,
+          authors: bookObj.volumeInfo.authors,
+          description: bookObj.volumeInfo.description,
+          image: bookImg,
+          link: bookObj.volumeInfo.infoLink
+        }
+        return parsedBook;
+      });
+      res.json(specificData);
+    })
 
 ```
-npm install
+
+Mongoose database stores saved books
+```javascript
+const bookSchema = new Schema({
+    title: { 
+        type: String,
+        unique: true
+    },
+    authors: {type: Array},
+    description: { type: String },
+    image: { type: String },
+    link: { type: String }
+})
 ```
 
-This should install node modules within the server and the client folder.
+## Authors
 
-After both installations complete, run the following command in your terminal:
+**Sammy Kroner**
 
-```
-npm start
-```
+[LinkedIn](www.linkedin.com/in/samuel-kroner-44aa11169)
 
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+[GitHub](https://github.com/sammyk118)
 
-## Deployment (Heroku)
+**Ron Arjay Caluag**
+[Github](https://github.com/ArjayCaluag)
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+**Rand Hale**
+[Github](https://github.com/prophetrandl)
